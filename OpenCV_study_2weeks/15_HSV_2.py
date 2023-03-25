@@ -1,0 +1,15 @@
+import cv2
+src = cv2.imread("D:\Python\Image/Jellybean.jpg", cv2.IMREAD_COLOR)
+hsv = cv2.cvtColor(src, cv2.COLOR_BGR2HSV)
+h, s, v = cv2.split(hsv)
+h_1= cv2.inRange(h, 8, 20)
+h_2 =cv2.inRange(h, 30, 50) 
+
+orange = cv2.bitwise_and(hsv, hsv, mask = h_1)
+orange = cv2.cvtColor(orange, cv2.COLOR_HSV2BGR)
+green = cv2.bitwise_and(hsv, hsv, mask=h_2)
+green = cv2.cvtColor(green, cv2.COLOR_HSV2BGR)
+cv2.imshow("orange", orange)
+cv2.imshow("green", green)
+cv2.waitKey()
+cv2.destroyAllWindows()
